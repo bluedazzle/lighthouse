@@ -27,3 +27,16 @@ class Proxy(BaseModel):
 
     def __repr__(self):
         return '{0}:{1}'.format(self.host, self.port)
+
+
+class ZHArticle(BaseModel):
+    title = models.CharField(max_length=512)
+    link = models.CharField(max_length=512)
+    md5 = models.CharField(max_length=64, unique=True)
+    content = models.TextField(default='')
+    summary = models.TextField(default='')
+    cover = models.CharField(max_length=512)
+    token = models.CharField(max_length=16, unique=True)
+
+    def __unicode__(self):
+        return self.title

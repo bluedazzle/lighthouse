@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Lighthousee.wsgi.application'
+WSGI_APPLICATION = 'Lighthouse.wsgi.application'
 
 
 # Database
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'Lighthousee.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Lighthousee',
+        'NAME': 'Lighthouse',
         'USER': 'root',
         'PASSWORD': '123456qq',
         'HOST': '127.0.0.1',

@@ -3,3 +3,4 @@ from core.models import *
 # Register your models here.
 
 admin.site.register(Proxy)
+admin.site.register(ZHArticle)
