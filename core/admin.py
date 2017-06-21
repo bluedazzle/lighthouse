@@ -4,3 +4,6 @@ from core.models import *
 
 admin.site.register(Proxy)
 admin.site.register(ZHArticle)
+admin.site.register(ZHUser)
+admin.site.register(ZHColumn)
+admin.site.register(Tag)

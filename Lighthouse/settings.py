@@ -78,12 +78,13 @@ WSGI_APPLICATION = 'Lighthouse.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Lighthouse',
-        'USER': 'root',
+        # 'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'lighthouse',
+        'USER': 'rapospectre',
         'PASSWORD': '123456qq',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '5432',
     }
 }
 
