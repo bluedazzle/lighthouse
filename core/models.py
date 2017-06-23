@@ -77,4 +77,13 @@ class ZHArticle(BaseModel):
     tags = models.ManyToManyField(Tag, related_name='tag_articles')
 
     def __unicode__(self):
-        return self.title
+        return '{0}-{1:%Y-%m-%d %H:%M:%S}'.format(self.title, self.create_time)
+
+
+class ZHRandomColumn(BaseModel):
+    slug = models.CharField(max_length=100, unique=True)
+    link = models.CharField(max_length=512)
+    hash = models.CharField(max_length=64, unique=True)
+
+    def __unicode__(self):
+        return self.slug
