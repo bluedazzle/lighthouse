@@ -38,6 +38,8 @@ class ZHUser(BaseModel):
     slug = models.CharField(max_length=64, unique=True)
     description = models.CharField(max_length=512, default='', null=True, blank=True)
     headline = models.CharField(max_length=128, default='', null=True, blank=True)
+    crawl_column = models.BooleanField(default=False)
+    crawl_follow = models.BooleanField(default=False)
 
     def __unicode__(self):
         return '{0}|{1}'.format(self.name, self.slug)
