@@ -16,8 +16,13 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['slug', 'hash']
 
 
+class ArticleAdmin(admin.ModelAdmin):
+    search_fields = ['title', 'token']
+    list_display = ['title', 'link', 'content']
+
+
 admin.site.register(Proxy)
-admin.site.register(ZHArticle)
+admin.site.register(ZHArticle, ArticleAdmin)
 admin.site.register(ZHUser, UserAdmin)
 admin.site.register(ZHColumn, ColumnAdmin)
 admin.site.register(Tag)
