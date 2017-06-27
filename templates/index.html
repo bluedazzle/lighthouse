@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css" rel="stylesheet">
+</head>
+<body>
+<ul>
+    {% for obj in object_list %}
+        <li><a href="/article/{{ obj.token }}/">{{ obj.title }}</a></li>
+    {% endfor %}
+</ul>
+<ul>
+{#    {% for page in page_obj.paginator.page_range %}#}
+{#    <li><a href="">{{ page }}</a></li>#}
+{#    {% endfor %}#}
+</ul>
+<script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.min.js"></script>
+</body>
+</html>

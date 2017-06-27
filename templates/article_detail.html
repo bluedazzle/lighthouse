@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="never">
+    <title>{{ zharticle.title }}</title>
+        <link href="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css" rel="stylesheet">
+</head>
+<body>
+    <a href="{{ zharticle.link }}">yuanwen</a>
+    <div style="width: 80%;margin: 0 10%;">
+            {{ zharticle.content | safe }}
+    </div>
+<script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.min.js"></script>
+</body>
+</html>
