@@ -88,4 +88,4 @@ class ZHRandomColumn(BaseModel):
     hash = models.CharField(max_length=64, unique=True)
 
     def __unicode__(self):
-        return self.slug
+        return '{0}-{1:%Y-%m-%d %H:%M:%S}'.format(self.slug, self.create_time)
