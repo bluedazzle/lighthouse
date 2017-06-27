@@ -18,7 +18,6 @@ class UserAdmin(admin.ModelAdmin):
 
 class ArticleAdmin(admin.ModelAdmin):
     search_fields = ['title', 'token']
-    list_display = ['title', 'link', 'content']
 
 
 admin.site.register(Proxy)
