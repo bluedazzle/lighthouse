@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>{{ zharticle.title }}</title>
         <link href="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css" rel="stylesheet">
+        <link href="/s/css/article.css" rel="stylesheet">
 </head>
 <body>
-    <a href="{{ zharticle.link }}">yuanwen</a>
-    <div style="width: 80%;margin: 0 10%;">
+{#    <a href="{{ zharticle.link }}">yuanwen</a>#}
+    <div style="width: 660px;margin: 47px auto 0;">
+        <img src="{{ zharticle.cover }}" alt="cover" style="margin-bottom: 12px;">
+        <div>
+            <div style="margin-bottom: 20px;"><a href=""><img src="{{ zharticle.author.avatar }}" alt=""></a>{{ zharticle.author.name }} {{ zharticle.create_time }}</div>
+        </div>
+        <h1 style="margin-bottom: 10px;">{{ zharticle.title }}</h1>
             {{ zharticle.content | safe }}
     </div>
 <script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.js"></script>
