@@ -10,7 +10,7 @@ from core.models import ZHArticle
 class IndexView(ListView):
     model = ZHArticle
     template_name = 'index.html'
-    paginate_by = 10
+    paginate_by = 50
     http_method_names = ['get']
     ordering = '-create_time'
 
@@ -26,11 +26,11 @@ class ArticleDetailView(DetailView):
     template_name = 'article_detail.html'
 
     def render_to_response(self, context, **response_kwargs):
-        obj = context['zharticle']
-        from bs4 import BeautifulSoup
-        soup = BeautifulSoup(obj.content)
-        finds = soup.find_all('img')
-        for itm in finds:
-            itm['src'] = 'https://pic4.zhimg.com/{0}'.format(itm['src'])
-        obj.content = soup.prettify()
+        # obj = context['zharticle']
+        # from bs4 import BeautifulSoup
+        # soup = BeautifulSoup(obj.content)
+        # finds = soup.find_all('img')
+        # for itm in finds:
+        #     itm['src'] = 'https://pic4.zhimg.com/{0}'.format(itm['src'])
+        # obj.content = soup.prettify()
         return super(ArticleDetailView, self).render_to_response(context, **response_kwargs)
