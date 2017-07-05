@@ -9,14 +9,17 @@ from core.models import *
 class AritcleForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(AritcleForm, self).__init__(*args, **kwargs)
-        self.fields['author'].queryset = ZHUser.objects.filter(id=self.instance.author.id)
-        self.fields['belong'].queryset = ZHColumn.objects.filter(id=self.instance.belong.id)
+        if self.instance.author:
+            self.fields['author'].queryset = ZHUser.objects.filter(id=self.instance.author.id)
+        if self.instance.belong:
+            self.fields['belong'].queryset = ZHColumn.objects.filter(id=self.instance.belong.id)
 
 
 class ColumnForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ColumnForm, self).__init__(*args, **kwargs)
-        self.fields['creator'].queryset = ZHUser.objects.filter(id=self.instance.creator.id)
+        if self.instance.creator:
+            self.fields['creator'].queryset = ZHUser.objects.filter(id=self.instance.creator.id)
 
 
 class ColumnAdmin(admin.ModelAdmin):

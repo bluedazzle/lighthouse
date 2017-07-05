@@ -1,3 +1,13 @@
 img {
     max-width: 100%;
+    margin-top: 10px;
+}
+
+.article {
+    width: 660px;
+    margin: 47px auto 0;
+}
+
+.title {
+    margin-bottom: 10px;
 }

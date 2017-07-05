@@ -26,11 +26,16 @@ class ArticleDetailView(DetailView):
     template_name = 'article_detail.html'
 
     def render_to_response(self, context, **response_kwargs):
-        # obj = context['zharticle']
-        # from bs4 import BeautifulSoup
-        # soup = BeautifulSoup(obj.content)
-        # finds = soup.find_all('img')
-        # for itm in finds:
-        #     itm['src'] = 'https://pic4.zhimg.com/{0}'.format(itm['src'])
-        # obj.content = soup.prettify()
+        from bs4 import BeautifulSoup
+        import jieba.analyse
+        obj = context['zharticle']
+        soup = BeautifulSoup(obj.content)
+        raw_text = soup.get_text()
+        summary = raw_text[:200]
+        title_list = [itm for itm in jieba.cut(obj.title) if len(itm) > 1]
+        seg_list = jieba.analyse.extract_tags(raw_text, topK=100, withWeight=False)
+        seg_list = seg_list[:20]
+        seg_list.extend(title_list)
+        seg_list = set(seg_list)
+        keywords = ','.join(seg_list)
         return super(ArticleDetailView, self).render_to_response(context, **response_kwargs)

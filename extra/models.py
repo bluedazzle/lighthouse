@@ -31,6 +31,7 @@ class ZHArticle(Base):
     md5 = Column(String, unique=True)
     content = Column(String)
     summary = Column(String)
+    keywords = Column(String, default='')
     cover = Column(String)
     link = Column(String)
     token = Column(String)
@@ -98,7 +99,7 @@ class ZHRandomColumn(Base):
     hash = Column(String, unique=True)
 
 
-engine = create_engine('postgresql+psycopg2://postgres:123456qq@localhost:5432/lighthouse',
+engine = create_engine('postgresql+psycopg2://rapospectre:123456qq@localhost:5432/lighthouse',
                        encoding='utf-8'.encode())
 
 DBSession = sessionmaker(bind=engine)

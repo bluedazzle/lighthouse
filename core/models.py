@@ -71,6 +71,7 @@ class ZHArticle(BaseModel):
     md5 = models.CharField(max_length=64, unique=True)
     content = models.TextField(default='')
     summary = models.TextField(default='')
+    keywords = models.TextField(default='')
     cover = models.CharField(max_length=512)
     token = models.CharField(max_length=16, unique=True)
     author = models.ForeignKey(ZHUser, related_name='zhuser_articles', null=True, blank=True, on_delete=models.SET_NULL)

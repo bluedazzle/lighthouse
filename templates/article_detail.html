@@ -10,15 +10,14 @@
 </head>
 <body>
 {#    <a href="{{ zharticle.link }}">yuanwen</a>#}
-    <div style="width: 660px;margin: 47px auto 0;">
-        <img src="{{ zharticle.cover }}" alt="cover" style="margin-bottom: 12px;">
-        <div>
+    <div class="article">
+        <img class="title-image" src="{{ zharticle.cover }}" alt="cover" style="margin-bottom: 12px;">
+        <div class="title-info">
             <div style="margin-bottom: 20px;"><a href=""><img src="{{ zharticle.author.avatar }}" alt=""></a>{{ zharticle.author.name }} {{ zharticle.create_time }}</div>
         </div>
-        <h1 style="margin-bottom: 10px;">{{ zharticle.title }}</h1>
+        <h1 class="title">{{ zharticle.title }}</h1>
             {{ zharticle.content | safe }}
     </div>
-<script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.min.js"></script>
 </body>
 </html>
