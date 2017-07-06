@@ -22,7 +22,12 @@
 
 .article {
     width: 660px;
-    margin: 47px auto 0;
+    margin: 0 auto;
+}
+
+.cover {
+    width: 660px;
+    margin: 0 auto;
 }
 
 .article-footer {
@@ -108,4 +113,24 @@ a:active {
 
 .relate-detail-content a:hover {
     color: #666;
+}
+
+@media (max-width: 660px) {
+    .article {
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    .cover {
+        width: 100%;
+    }
+
+    .relate-detail-content {
+        display: none;
+    }
+
+    .relate-cover {
+        display: none;
+    }
 }
