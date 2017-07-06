@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.views.generic import DetailView
 from django.views.generic import ListView
 
-from core.models import ZHArticle
+from core.models import ZHArticle, ZHColumn
+from page.utils import convert_image_size
 
 
 class IndexView(ListView):
@@ -25,17 +26,17 @@ class ArticleDetailView(DetailView):
     http_method_names = ['get']
     template_name = 'article_detail.html'
 
+    @staticmethod
+    def change_cover_size(obj_list):
+        for obj in obj_list:
+            obj.cover = convert_image_size(obj.cover)
+        return obj_list
+
+    def generate_relate_articles(self, context):
+        context['relate_list'] = self.change_cover_size(
+            self.object.belong.column_articles.exclude(id=self.object.id).order_by('-create_time')[:3])
+        context['recommand_list'] = self.change_cover_size(ZHArticle.objects.all().order_by('-create_time')[:3])
+
     def render_to_response(self, context, **response_kwargs):
-        from bs4 import BeautifulSoup
-        import jieba.analyse
-        obj = context['zharticle']
-        soup = BeautifulSoup(obj.content)
-        raw_text = soup.get_text()
-        summary = raw_text[:200]
-        title_list = [itm for itm in jieba.cut(obj.title) if len(itm) > 1]
-        seg_list = jieba.analyse.extract_tags(raw_text, topK=100, withWeight=False)
-        seg_list = seg_list[:20]
-        seg_list.extend(title_list)
-        seg_list = set(seg_list)
-        keywords = ','.join(seg_list)
+        self.generate_relate_articles(context)
         return super(ArticleDetailView, self).render_to_response(context, **response_kwargs)

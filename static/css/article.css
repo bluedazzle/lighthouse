@@ -1,6 +1,23 @@
-img {
+.article-content img {
     max-width: 100%;
     margin-top: 10px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.title-image {
+    width: 100%;
+}
+
+.title-info {
+    margin-bottom: 20px;
+}
+
+.title-info img {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    margin-right: 10px;
 }
 
 .article {
@@ -8,6 +25,87 @@ img {
     margin: 47px auto 0;
 }
 
+.article-footer {
+    margin-top: 40px;
+    font-style: italic;
+    color: gray;
+}
+
 .title {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    curosr: default;
+}
+
+.relate-title {
+    margin-top: 150px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    cursor: default;
+
+}
+
+.recommand-title {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    cursor: default;
+
+}
+
+.relate-detail-content {
+    color: #666;
+    word-break: break-all;
+}
+
+.relate-cover {
+    width: 156px;
+    height: 143px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+li {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.relate-detail-footer {
+    margin-top: 10px;
+    color: gray;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.relate-detail-footer a {
+    color: gray;
+}
+
+.relate-detail-content a {
+    color: #666;
+}
+
+.relate-detail-content a:hover {
+    color: #666;
 }

@@ -5,19 +5,94 @@
     <meta name="referrer" content="never">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>{{ zharticle.title }}</title>
-        <link href="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css" rel="stylesheet">
-        <link href="/s/css/article.css" rel="stylesheet">
+    {#    <link href="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css"#}
+    {#          rel="stylesheet">#}
+    <link href="https://cdn.bootcss.com/tether/1.4.0/css/tether.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/s/css/article.css" rel="stylesheet">
 </head>
 <body>
 {#    <a href="{{ zharticle.link }}">yuanwen</a>#}
-    <div class="article">
-        <img class="title-image" src="{{ zharticle.cover }}" alt="cover" style="margin-bottom: 12px;">
-        <div class="title-info">
-            <div style="margin-bottom: 20px;"><a href=""><img src="{{ zharticle.author.avatar }}" alt=""></a>{{ zharticle.author.name }} {{ zharticle.create_time }}</div>
+<div class="article">
+    <img class="title-image" src="{{ zharticle.cover }}" alt="cover" style="margin-bottom: 12px;">
+    <div class="title-info">
+        <div><a href=""><img src="{{ zharticle.author.avatar }}"
+                             alt="">{{ zharticle.author.name }}</a> {{ zharticle.create_time }}
         </div>
-        <h1 class="title">{{ zharticle.title }}</h1>
-            {{ zharticle.content | safe }}
     </div>
-<script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.min.js"></script>
+    <h1 class="title">{{ zharticle.title }}</h1>
+    <div class="article-content">
+        {{ zharticle.content | safe }}</div>
+    <div class="article-footer">
+        <div class="row">
+            <div class="col-lg-6">
+                本文来源于网络，版权归作者所有
+            </div>
+            <div class="col-lg-6">
+                <a href="{{ zharticle.link }}" style="float: right">阅读原文 ></a>
+            </div>
+        </div>
+    </div>
+    <div class="relate-title">
+        相关阅读
+    </div>
+    <div class="relate-list">
+        {% for relate in relate_list %}
+            <li>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <a href="/article/{{ relate.token }}"><img src="{{ relate.cover }}" alt="{{ relate.title }}" class="relate-cover"></a>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="relate-detail">
+                            <div class="relate-detail-title">
+                                <h5><a href="/article/{{ relate.token }}">{{ relate.title }}</a></h5>
+                            </div>
+                            <div class="relate-detail-content">
+                                <a href="/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}... 阅读全文 ></a>
+                            </div>
+                            <div class="relate-detail-footer">
+                                <a href="{{ relate.author.link }}" >{{ relate.author.name }}</a> {{ relate.create_time }} 发表于 <a href="">{{ relate.belong.name }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </div>
+
+    <div class="recommand-title">
+        推荐阅读
+    </div>
+    <div class="relate-list">
+        {% for relate in recommand_list %}
+            <li>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <a href="/article/{{ relate.token }}"><img src="{{ relate.cover }}" alt="{{ relate.title }}" class="relate-cover"></a>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="relate-detail">
+                            <div class="relate-detail-title">
+                                <h5><a href="/article/{{ relate.token }}">{{ relate.title }}</a></h5>
+                            </div>
+                            <div class="relate-detail-content">
+                                <a href="/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}... 阅读全文 ></a>
+                            </div>
+                            <div class="relate-detail-footer">
+                                <a href="{{ relate.author.link }}" >{{ relate.author.name }}</a> {{ relate.create_time }} 发表于 <a href="">{{ relate.belong.name }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </div>
+</div>
+{#<script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.min.js"></script>#}
+<script src="https://cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 </body>
 </html>

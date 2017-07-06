@@ -22,7 +22,7 @@ class Proxy(Base):
 
 
 class ZHArticle(Base):
-    __tablename__ = 'core_zharticle'
+    __tablename__ = ''
 
     id = Column(Integer, primary_key=True)
     create_time = Column(DateTime)
