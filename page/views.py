@@ -11,11 +11,18 @@ from page.utils import convert_image_size
 class IndexView(ListView):
     model = ZHArticle
     template_name = 'index.html'
-    paginate_by = 50
+    paginate_by = 10
     http_method_names = ['get']
     ordering = '-create_time'
 
+    @staticmethod
+    def change_cover_size(obj_list):
+        for obj in obj_list:
+            obj.cover = convert_image_size(obj.cover)
+        return obj_list
+
     def render_to_response(self, context, **response_kwargs):
+        context['zharticle_list'] = self.change_cover_size(context['zharticle_list'])
         return super(IndexView, self).render_to_response(context, **response_kwargs)
 
 

@@ -2,21 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css" rel="stylesheet">
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>文章导航 - 汇集所有文章</title>
+    <link href="https://cdn.bootcss.com/tether/1.4.0/css/tether.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/s/css/index.css" rel="stylesheet">
+
 </head>
 <body>
-<ul>
-    {% for obj in object_list %}
-        <li><a href="/article/{{ obj.token }}/">{{ obj.title }}</a></li>
-    {% endfor %}
-</ul>
-<ul>
+<div class="index-content">
+    <div class="article-list">
+        {% for relate in zharticle_list %}
+            <div class="article-item">
+                <div class="row" style="margin-left: 0;margin-right: 0;">
+                    <div class="item-img">
+                        <a href="/article/{{ relate.token }}" target="_blank"><img src="{{ relate.cover }}"
+                                                                                   alt="{{ relate.title }}"
+                                                                                   class="relate-cover"></a>
+                    </div>
+                    <div class="item-content">
+                        <div class="relate-detail">
+                            <div class="relate-detail-title">
+                                <h5><a href="/article/{{ relate.token }}" target="_blank">{{ relate.title }}</a></h5>
+                            </div>
+                            <div class="relate-detail-footer">
+                                <a href="{{ relate.author.link }}"><img src="{{ relate.belong.avatar }}"
+                                                                        alt="{{ relate.belong.name }}"
+                                                                        class="item-avatar"> {{ relate.belong.name }} <span>{{ relate.create_time | timesince }} 前</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {#    {% for page in page_obj.paginator.page_range %}#}
 {#    <li><a href="">{{ page }}</a></li>#}
 {#    {% endfor %}#}
-</ul>
-<script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.min.js"></script>
+<script src="https://cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="/s/js/Scrollload.js"></script>
+<script src="/s/js/index.js"></script>
+
 </body>
 </html>
