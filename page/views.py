@@ -21,6 +21,11 @@ class IndexView(ListView):
             obj.cover = convert_image_size(obj.cover)
         return obj_list
 
+    def get_queryset(self):
+        queryser = super(IndexView, self).get_queryset()
+        queryser = queryser.defer('content', 'summary', 'modify_time', 'link', 'keywords')
+        return queryser
+
     def render_to_response(self, context, **response_kwargs):
         context['zharticle_list'] = self.change_cover_size(context['zharticle_list'])
         return super(IndexView, self).render_to_response(context, **response_kwargs)
