@@ -11,6 +11,8 @@ SIZE_RAW = 'r'
 
 
 def convert_image_size(url, size=SIZE_BIG):
+    if not url:
+        return url
     if 'default' in url:
         return url
     try:

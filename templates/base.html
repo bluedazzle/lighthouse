@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="never">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+
+    {% block meta %}
+
+    {% endblock %}
+    <link href="/s/image/wz_header.ico" rel="shortcut icon"/>
+    <title>{% block title %}{{ blogtitle }}{% endblock %}</title>
+    <link href="https://cdn.bootcss.com/tether/1.4.0/css/tether.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://v4.bootcss.com/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/s/css/base.css">
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-faded sticky-top">
+    <div class="navbar" style="width: 660px; margin: 0 auto; padding: 0;">
+        <a class="navbar-brand" href="/"><img src="/s/image/wz_banner.png" height="25px" alt=""><span style="margin-left: 10px; color: #a2a2a2; font-size: 15px; ">发现优质文章</span></a>
+        <form class="form-inline mobile-hidden">
+            <input class="form-control mr-sm-2" type="text" placeholder="搜文章">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+        </form>
+    </div>
+</nav>
+{% block content %}
+{% endblock %}
+<script src="https://cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.9.3/umd/popper.min.js"
+        integrity="sha384-knhBOwpf8/28D6ygAjJeb0STNDZqfPbKaWQ8wIz/xgSc0xXwKsKhNype8fmfMka2"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+<script src="/s/js/Scrollload.js"></script>
+
+{% block script %}
+{% endblock %}
+</body>
+</html>

@@ -115,6 +115,35 @@ a:active {
     color: #666;
 }
 
+.relate-img {
+    float: left;
+    width: 27%;
+    overflow: auto;
+}
+
+.relate-item {
+    float: left;
+    width: 73%;
+    overflow: auto;
+}
+
+.fix-row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.footer-left {
+    float: left;
+    width: 70%;
+    overflow: auto;
+}
+
+.footer-right {
+    float: right;
+    width: 30%;
+    overflow: auto;
+}
+
 @media (max-width: 660px) {
     .article {
         width: 100%;
@@ -131,6 +160,10 @@ a:active {
     }
 
     .relate-cover {
-        display: none;
+        width: 90px;
+        height: 85px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
     }
 }

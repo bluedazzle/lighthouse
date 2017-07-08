@@ -70,14 +70,14 @@ class ZHArticle(BaseModel):
     link = models.CharField(max_length=512)
     md5 = models.CharField(max_length=64, unique=True)
     content = models.TextField(default='')
-    summary = models.TextField(default='')
-    keywords = models.TextField(default='')
-    cover = models.CharField(max_length=512)
+    summary = models.TextField(default='', null=True, blank=True)
+    keywords = models.TextField(default='', null=True, blank=True)
+    cover = models.CharField(max_length=512, null=True, blank=True)
     token = models.CharField(max_length=16, unique=True)
     author = models.ForeignKey(ZHUser, related_name='zhuser_articles', null=True, blank=True, on_delete=models.SET_NULL)
     belong = models.ForeignKey(ZHColumn, related_name='column_articles', null=True, blank=True,
                                on_delete=models.SET_NULL)
-    tags = models.ManyToManyField(Tag, related_name='tag_articles')
+    tags = models.ManyToManyField(Tag, related_name='tag_articles', blank=True)
 
     def __unicode__(self):
         return '{0}-{1:%Y-%m-%d %H:%M:%S}'.format(self.title, self.create_time)
