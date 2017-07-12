@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'django.contrib.sitemaps',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -81,7 +82,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.mysql',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'lighthouse',
-        'USER': 'postgres',
+        'USER': 'rapospectre',
         'PASSWORD': '123456qq',
         'HOST': '127.0.0.1',
         'PORT': '5432',

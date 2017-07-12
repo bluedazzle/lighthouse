@@ -43,21 +43,40 @@
                 </div>
             </div>
         </div>
-        <div class="relate-title">
-            相关阅读
-        </div>
-        <div class="relate-list">
-            {% for relate in relate_list %}
-                <li>
-                    {% if relate.cover %}
-                        <div class="row fix-row">
+        {% if relate_list %}
+            <div class="relate-title">
+                相关阅读
+            </div>
+            <div class="relate-list">
+                {% for relate in relate_list %}
+                    <li>
+                        {% if relate.cover %}
+                            <div class="row fix-row">
 
-                            <div class="relate-img">
-                                <a href="/article/{{ relate.token }}"><img src="{{ relate.cover }}"
-                                                                           alt="{{ relate.title }}"
-                                                                           class="relate-cover"></a>
+                                <div class="relate-img">
+                                    <a href="/article/{{ relate.token }}"><img src="{{ relate.cover }}"
+                                                                               alt="{{ relate.title }}"
+                                                                               class="relate-cover"></a>
+                                </div>
+                                <div class="relate-item">
+                                    <div class="relate-detail">
+                                        <div class="relate-detail-title">
+                                            <h5><a href="/article/{{ relate.token }}">{{ relate.title }}</a></h5>
+                                        </div>
+                                        <div class="relate-detail-content">
+                                            <a href="/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}...
+                                                阅读全文
+                                                ></a>
+                                        </div>
+                                        <div class="relate-detail-footer">
+                                            <a href="{{ relate.author.link }}">{{ relate.author.name }}</a> {{ relate.create_time }}
+                                            发表于 <a href="">{{ relate.belong.name }}</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="relate-item">
+                        {% else %}
+                            <div class="row fix-row">
                                 <div class="relate-detail">
                                     <div class="relate-detail-title">
                                         <h5><a href="/article/{{ relate.token }}">{{ relate.title }}</a></h5>
@@ -72,27 +91,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    {% else %}
-                        <div class="row fix-row">
-                            <div class="relate-detail">
-                                <div class="relate-detail-title">
-                                    <h5><a href="/article/{{ relate.token }}">{{ relate.title }}</a></h5>
-                                </div>
-                                <div class="relate-detail-content">
-                                    <a href="/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}... 阅读全文
-                                        ></a>
-                                </div>
-                                <div class="relate-detail-footer">
-                                    <a href="{{ relate.author.link }}">{{ relate.author.name }}</a> {{ relate.create_time }}
-                                    发表于 <a href="">{{ relate.belong.name }}</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </div>
+        {% endif %}
 
         <div class="recommand-title">
             推荐阅读
@@ -144,5 +147,15 @@
                 </li>
             {% endfor %}
         </div>
+    <div class="recommand-title">
+        文章导航
     </div>
+    </div>
+
+    <div class="index-content">
+    <div class="article-list">
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="/s/js/index.js"></script>
 {% endblock %}

@@ -3,16 +3,22 @@
  */
 
 var page = 2;
+var total = 10;
+
+$(function(){
+    total = $('#total-page').attr('total');
+    $('.article-pagination').remove();
+});
 
 new Scrollload({
     container: document.querySelector('.index-content'),
     content: document.querySelector('.article-list'),
     loadMore: function (sl) {
-        // if (page === 50) {
-        //     // 没有数据的时候需要调用noMoreData
-        //     sl.noMoreData();
-        //     return
-        // }
+        if (page > total) {
+            // 没有数据的时候需要调用noMoreData
+            sl.noMoreData();
+            return
+        }
         $.ajax({
             type: 'GET',
             url: '/articles/?page=' + page,

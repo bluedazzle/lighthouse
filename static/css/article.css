@@ -144,6 +144,92 @@ a:active {
     overflow: auto;
 }
 
+.index-content {
+    width: 660px;
+    margin: 0 auto;
+}
+
+.relate-detail-footer {
+    margin-top: 10px;
+    color: gray;
+}
+
+.item-detail-footer a {
+    color: gray;
+}
+
+.item-detail-footer span {
+    margin-left: 20px;
+}
+
+.item-detail-content a {
+    color: #666;
+}
+
+.item-detail-content a:hover {
+    color: #666;
+}
+
+.item-title {
+    margin-top: 150px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    cursor: default;
+
+}
+
+.item-detail-content {
+    color: #666;
+    word-break: break-all;
+}
+
+.item-cover {
+    width: 180px;
+    height: 143px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 3px;
+}
+
+.article-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #f0f0f0;
+}
+
+.article-item:hover {
+    background-color: #f0f0f0;
+}
+
+.item-avatar {
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+.item-img {
+    float: left;
+    width: 30%;
+    overflow: auto;
+    margin-right: 10px;
+}
+
+.item-content {
+    float: left;
+    width: 66%;
+    overflow: auto;
+}
+
+.article-list {
+    overflow: auto;
+}
+
+.article-pagination {
+    margin-top: 40px;
+}
+
 @media (max-width: 660px) {
     .article {
         width: 100%;
@@ -165,5 +251,19 @@ a:active {
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
+    }
+
+    .index-content {
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    .item-cover {
+        width: 110px;
+        height: 90px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 3px;
     }
 }
