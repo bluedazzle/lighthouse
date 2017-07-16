@@ -35,9 +35,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'core',
     'django.contrib.sitemaps',
     'debug_toolbar',
+    'static_sitemaps',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -136,3 +138,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = './static/'
 
 STATIC_MEDIA = './static/'
+
+SITE_ID = 1
+
+STATICSITEMAPS_ROOT_SITEMAP = 'Lighthouse.urls.sitemaps'
+
+STATICSITEMAPS_ROOT_DIR = 'static'
+
+STATICSITEMAPS_URL = '/s/static/'
+

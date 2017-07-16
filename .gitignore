@@ -203,3 +203,4 @@ ENV/
 wxpy/main.py
 fabfile.py
 00*_*.py
+static/static/
