@@ -1,7 +1,6 @@
 # coding: utf-8
 from __future__ import unicode_literals
 
-
 import random
 import logging
 import sys
@@ -17,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
 
 
-def fix_image_in_article():
+def fix_image_in_article(exist=None):
     from models import ZHArticle, DBSession
     from bs4 import BeautifulSoup
     session = DBSession()
@@ -25,13 +24,19 @@ def fix_image_in_article():
     limit = 1000
     total = session.query(func.count(ZHArticle.id)).scalar()
     total_offset = int(math.ceil(total / float(limit)))
-    count = 0
-    for i in xrange(total_offset):
+    if exist:
+        start = exist / limit
+        count = start * limit - 1
+    else:
+        start = 1
+        count = 0
+    for i in xrange(start, total_offset):
         offset = limit * i
         result = session.query(ZHArticle).order_by('id').limit(limit).offset(offset).all()
 
         for article in result:
-            logging.info('Current {0} {1}/{2} {3}%'.format(article.token, count+1, total, (count+1.0) / total * 100))
+            logging.info(
+                'Current {0} {1}/{2} {3}%'.format(article.token, count + 1, total, (count + 1.0) / total * 100))
             soup = BeautifulSoup(article.content)
             finds = soup.find_all('img')
             for itm in finds:
@@ -40,8 +45,6 @@ def fix_image_in_article():
             if not article.cover:
                 if finds:
                     article.cover = finds[0]['src']
-                else:
-                    article.cover = '/s/image/default.jpg'
             article.content = soup.prettify()
             count += 1
             try:
@@ -54,4 +57,4 @@ def fix_image_in_article():
 
 
 if __name__ == '__main__':
-    fix_image_in_article()
+    fix_image_in_article(337441)
