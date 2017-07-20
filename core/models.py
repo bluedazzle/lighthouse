@@ -1,8 +1,12 @@
 from __future__ import unicode_literals
+
+import datetime
 from django.db import models
 
 
 # Create your models here.
+from django.utils.timezone import get_current_timezone
+
 
 class BaseModel(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
@@ -52,6 +56,7 @@ class ZHColumn(BaseModel):
     slug = models.CharField(max_length=64, unique=True)
     description = models.CharField(max_length=512, default='', null=True, blank=True)
     avatar = models.CharField(max_length=512, default='')
+    last_update_time = models.DateTimeField(default=datetime.datetime(1980, 1, 1, tzinfo=get_current_timezone()))
     creator = models.ForeignKey(ZHUser, related_name='zhuser_columns', null=True, blank=True, on_delete=models.SET_NULL)
 
     def __unicode__(self):
