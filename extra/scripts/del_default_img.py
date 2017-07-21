@@ -16,7 +16,7 @@ sys.path.append(BASE_DIR)
 
 
 def fix_image_in_article():
-    from models import ZHArticle, DBSession
+    from lg_data.db.models import ZHArticle, DBSession
     session = DBSession()
     fail_list = []
     limit = 1000

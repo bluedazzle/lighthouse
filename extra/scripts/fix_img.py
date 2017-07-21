@@ -17,7 +17,7 @@ sys.path.append(BASE_DIR)
 
 
 def fix_image_in_article(exist=None):
-    from models import ZHArticle, DBSession
+    from lg_data.db.models import ZHArticle, DBSession
     from bs4 import BeautifulSoup
     session = DBSession()
     fail_list = []

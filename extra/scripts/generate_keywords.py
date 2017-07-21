@@ -30,7 +30,7 @@ def generate_keywords(obj):
 
 
 def iter_all_data(exist=None):
-    from models import ZHArticle, DBSession
+    from lg_data.db.models import ZHArticle, DBSession
     session = DBSession()
     fail_list = []
     limit = 1000
