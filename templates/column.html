@@ -1,19 +1,27 @@
 {% extends "base.html" %}
-{% block title %}文章导航 - 发现优质文章{% endblock %}
-{% block meta %}
-    <meta name="baidu-site-verification" content="1IIjvopyaW"/>
-    <meta name="keywords"
-          content="文章,文章收藏工具,文章订阅工具,个人文库,在线图书馆,自媒体文章,知乎文章,专栏文章,文章导航,知乎专栏,微信文章大全,微信优质文章,自媒体作者,微信精选文章,热门微信文章聚合,微信公众号导航,微信精选公众号">
-    <meta name="description" content="【文章导航】是集文章分享,内容订阅,收藏摘录于一体的优质文章发现平台。 这里是优质文章的展示平台">
-{% endblock %}
+{% block title %} 专栏 {{ column.name }} - 文章导航{% endblock %}
 {% block css %}
-    <link href="/s/css/index.css" rel="stylesheet">
+    <link href="/s/css/column.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <div class="index-content">
+    <div class="column-content">
+        <div class="column-info">
+            <div class="column-avatar"><img src="{{ column.avatar }}" alt="{{ column.name }}"></div>
+            <div class="column-detail">
+                <h1 class="column-title">{{ column.name }}</h1>
+                <span class="column-desc">{{ column.description }}</span>
+            </div>
+        </div>
+        <div>
+            <div class="column-extra">
+                <div class="extra-count">文章数量: 56 篇</div>
+                <div class="extra-update">最近更新: {{ column.last_update_time }}</div>
+            </div>
+        </div>
+        <div class="column-line"></div>
         <div class="article-list">
-            {% for relate in zharticle_list %}
+            {% for relate in object_list %}
                 <div class="article-item">
                     {% if relate.cover %}
                         <div class="row" style="margin-left: 0;margin-right: 0;">
@@ -29,10 +37,9 @@
                                         </h4>
                                     </div>
                                     <div class="item-detail-footer">
-                                        <a href="{{ host }}/column/{{ relate.belong.slug }}/"><img
-                                                src="{{ relate.belong.avatar }}"
-                                                alt="{{ relate.belong.name }}"
-                                                class="item-avatar"> {{ relate.belong.name }}
+                                        <a href="#"><img src="{{ relate.belong.avatar }}"
+                                                         alt="{{ relate.belong.name }}"
+                                                         class="item-avatar"> {{ relate.belong.name }}
                                             <span>{{ relate.create_time }}</span>
                                         </a>
                                     </div>
@@ -61,16 +68,18 @@
             <nav aria-label="">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" href="{{ host }}/articles?page=1" aria-label="Previous">
+                        <a class="page-link" href="{{ host }}/column/{{ column.slug }}/?page=1" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a>
                     </li>
                     {% for page in page_range %}
-                        <li class="page-item"><a class="page-link" href="{{ host }}/articles?page={{ page }}">{{ page }}</a></li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ host }}/column/{{ column.slug }}/?page={{ page }}">{{ page }}</a></li>
                     {% endfor %}
                     <li class="page-item">
-                        <a id="total-page" class="page-link" href="{{ host }}/articles?page={{ page_obj.paginator.num_pages }}"
+                        <a id="total-page" class="page-link"
+                           href="{{ host }}/column/{{ column.slug }}/?page={{ page_obj.paginator.num_pages }}"
                            total="{{ page_obj.paginator.num_pages }}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
@@ -83,5 +92,5 @@
     </div>
 {% endblock %}
 {% block script %}
-    <script src="/s/js/index.js"></script>
+    <script src="/s/js/column.js"></script>
 {% endblock %}

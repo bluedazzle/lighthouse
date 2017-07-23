@@ -24,6 +24,8 @@ SECRET_KEY = 'e*fy$fo1-zf5wx9amte446lss0r_w+&z@%n)t(-f%@hwc2cfgp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+HOST = 'https://www.wznav.com'
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -101,7 +103,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.mysql',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'lighthouse',
-        'USER': 'rapospectre',
+        'USER': 'postgres',
         'PASSWORD': '123456qq',
         'HOST': '127.0.0.1',
         'PORT': '5432',

@@ -5,6 +5,8 @@ import six
 
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import QuerySet
+from django.http import Http404
+from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
 from django.views.generic import ListView
 
@@ -12,8 +14,10 @@ from core.models import ZHArticle, ZHColumn
 from core.paginator import RedisCachePaginator
 from page.utils import convert_image_size
 
+from core.mixin.seo import HostMixin
 
-class ArticleListView(ListView):
+
+class ArticleListView(HostMixin, ListView):
     model = ZHArticle
     template_name = 'index.html'
     paginate_by = 10
@@ -62,7 +66,7 @@ class ArticleListView(ListView):
         return super(ArticleListView, self).render_to_response(context, **response_kwargs)
 
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(HostMixin, DetailView):
     model = ZHArticle
     slug_field = 'token'
     slug_url_kwarg = 'slug'
@@ -136,3 +140,38 @@ class ArticleDetailView(DetailView):
     def render_to_response(self, context, **response_kwargs):
         # self.generate_relate_articles(context)
         return super(ArticleDetailView, self).render_to_response(context, **response_kwargs)
+
+
+class ColumnDetailView(HostMixin, ListView):
+    model = ZHArticle
+    template_name = 'column.html'
+    column = None
+    paginate_by = 10
+
+    @staticmethod
+    def change_cover_size(obj_list):
+        for obj in obj_list:
+            obj.cover = convert_image_size(obj.cover)
+        return obj_list
+
+    def get_column_info(self, slug):
+        if not slug:
+            raise Http404
+        self.column = get_object_or_404(ZHColumn, slug=slug)
+
+    def get(self, request, *args, **kwargs):
+        self.get_column_info(kwargs.get('slug'))
+        return super(ColumnDetailView, self).get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return self.column.column_articles.order_by('-create_time').all()
+
+    def render_to_response(self, context, **response_kwargs):
+        context['column'] = self.column
+        context['object_list'] = self.change_cover_size(context['object_list'])
+        page_obj = context['page_obj']
+        end = page_obj.number + 5
+        if end > page_obj.paginator.num_pages:
+            end = page_obj.paginator.num_pages
+        context['page_range'] = page_obj.paginator.page_range[page_obj.number - 1:end]
+        return super(ColumnDetailView, self).render_to_response(context, **response_kwargs)

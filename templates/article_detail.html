@@ -17,7 +17,7 @@
     <div class="article">
         {% if object.cover %}
             <div class="title-info">
-                <div><a href=""><img src="{{ object.author.avatar }}"
+                <div><a href="#"><img src="{{ object.author.avatar }}"
                                      alt="">{{ object.author.name }}</a> {{ object.create_time }}
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <br>
             <h1 class="title">{{ object.title }}</h1>
             <div class="title-info">
-                <div><a href=""><img src="{{ object.author.avatar }}"
+                <div><a href="#"><img src="{{ object.author.avatar }}"
                                      alt="">{{ object.author.name }}</a> {{ object.create_time }}
                 </div>
             </div>
@@ -54,23 +54,23 @@
                             <div class="row fix-row">
 
                                 <div class="relate-img">
-                                    <a href="/article/{{ relate.token }}"><img src="{{ relate.cover }}"
+                                    <a href="{{ host }}/article/{{ relate.token }}"><img src="{{ relate.cover }}"
                                                                                alt="{{ relate.title }}"
                                                                                class="relate-cover"></a>
                                 </div>
                                 <div class="relate-item">
                                     <div class="relate-detail">
                                         <div class="relate-detail-title">
-                                            <h5><a href="/article/{{ relate.token }}">{{ relate.title }}</a></h5>
+                                            <h5><a href="{{ host }}/article/{{ relate.token }}">{{ relate.title }}</a></h5>
                                         </div>
                                         <div class="relate-detail-content">
-                                            <a href="/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}...
+                                            <a href="{{ host }}/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}...
                                                 阅读全文
                                                 ></a>
                                         </div>
                                         <div class="relate-detail-footer">
                                             <a href="{{ relate.author.link }}">{{ relate.author.name }}</a> {{ relate.create_time }}
-                                            发表于 <a href="">{{ relate.belong.name }}</a>
+                                            发表于 <a href="{{ host }}/column/{{ relate.belong.slug }}/">{{ relate.belong.name }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -79,15 +79,15 @@
                             <div class="row fix-row">
                                 <div class="relate-detail">
                                     <div class="relate-detail-title">
-                                        <h5><a href="/article/{{ relate.token }}">{{ relate.title }}</a></h5>
+                                        <h5><a href="{{ host }}/article/{{ relate.token }}">{{ relate.title }}</a></h5>
                                     </div>
                                     <div class="relate-detail-content">
-                                        <a href="/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}... 阅读全文
+                                        <a href="{{ host }}/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}... 阅读全文
                                             ></a>
                                     </div>
                                     <div class="relate-detail-footer">
                                         <a href="{{ relate.author.link }}">{{ relate.author.name }}</a> {{ relate.create_time }}
-                                        发表于 <a href="">{{ relate.belong.name }}</a>
+                                        发表于 <a href="{{ host }}/column/{{ relate.belong.slug }}/">{{ relate.belong.name }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -107,22 +107,22 @@
                         <div class="row fix-row">
 
                             <div class="relate-img">
-                                <a href="/article/{{ relate.token }}"><img src="{{ relate.cover }}"
+                                <a href="{{ host }}/article/{{ relate.token }}"><img src="{{ relate.cover }}"
                                                                            alt="{{ relate.title }}"
                                                                            class="relate-cover"></a>
                             </div>
                             <div class="relate-item">
                                 <div class="relate-detail">
                                     <div class="relate-detail-title">
-                                        <h5><a href="/article/{{ relate.token }}">{{ relate.title }}</a></h5>
+                                        <h5><a href="{{ host }}/article/{{ relate.token }}">{{ relate.title }}</a></h5>
                                     </div>
                                     <div class="relate-detail-content">
-                                        <a href="/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}... 阅读全文
+                                        <a href="{{ host }}/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}... 阅读全文
                                             ></a>
                                     </div>
                                     <div class="relate-detail-footer">
                                         <a href="{{ relate.author.link }}">{{ relate.author.name }}</a> {{ relate.create_time }}
-                                        发表于 <a href="">{{ relate.belong.name }}</a>
+                                        发表于 <a href="{{ host }}/column/{{ relate.belong.slug }}/">{{ relate.belong.name }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -131,15 +131,15 @@
                         <div class="row fix-row">
                             <div class="relate-detail">
                                 <div class="relate-detail-title">
-                                    <h5><a href="/article/{{ relate.token }}">{{ relate.title }}</a></h5>
+                                    <h5><a href="{{ host }}/article/{{ relate.token }}">{{ relate.title }}</a></h5>
                                 </div>
                                 <div class="relate-detail-content">
-                                    <a href="/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}... 阅读全文
+                                    <a href="{{ host }}/article/{{ relate.token }}">{{ relate.summary | slice:"50" }}... 阅读全文
                                         ></a>
                                 </div>
                                 <div class="relate-detail-footer">
                                     <a href="{{ relate.author.link }}">{{ relate.author.name }}</a> {{ relate.create_time }}
-                                    发表于 <a href="">{{ relate.belong.name }}</a>
+                                    发表于 <a href="{{ host }}/column/{{ relate.belong.slug }}">{{ relate.belong.name }}</a>
                                 </div>
                             </div>
                         </div>
