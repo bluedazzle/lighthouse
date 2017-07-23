@@ -46,6 +46,7 @@
     color: darkgray;
     overflow: hidden;
     padding: 20px 40px;
+    display: none;
 }
 
 .extra-count {
