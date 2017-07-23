@@ -24,7 +24,8 @@ SECRET_KEY = 'e*fy$fo1-zf5wx9amte446lss0r_w+&z@%n)t(-f%@hwc2cfgp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-HOST = 'https://www.wznav.com'
+# HOST = 'https://www.wznav.com'
+HOST = 'http://localhost:8000'
 
 ALLOWED_HOSTS = []
 

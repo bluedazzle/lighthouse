@@ -4,9 +4,11 @@
 
 var page = 2;
 var total = 10;
+var column = '';
 
 $(function(){
     total = $('#total-page').attr('total');
+    column = $('#column-slug').attr('slug');
     $('.article-pagination').remove();
 });
 
@@ -21,7 +23,7 @@ new Scrollload({
         }
         $.ajax({
             type: 'GET',
-            url: '/articles/?page=' + page,
+            url: '/column/' + column + '/?page=' + page,
             success: function(data){
                 var $n = $(data);
                 var items = $n.find("div[class='article-list']").html();
