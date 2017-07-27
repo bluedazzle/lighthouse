@@ -138,7 +138,7 @@ class ArticleDetailView(HostMixin, DetailView):
                 '-create_time')[:3])
 
     def render_to_response(self, context, **response_kwargs):
-        # self.generate_relate_articles(context)
+        self.generate_relate_articles(context)
         return super(ArticleDetailView, self).render_to_response(context, **response_kwargs)
 
 
