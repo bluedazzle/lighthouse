@@ -18,12 +18,12 @@
     {% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-faded sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-faded sticky-top" style="background-color: #f7f7f7; border-bottom: 1px solid #e4e5e6;">
     <div class="navbar" style="width: 660px; margin: 0 auto; padding: 0;">
         <a class="navbar-brand" href={{ host }}><img src="/s/image/wz_banner.png" height="25px" alt=""><span
                 style="margin-left: 10px; color: #a2a2a2; font-size: 15px; ">发现优质文章</span></a>
-        <form class="form-inline mobile-hidden">
-            <input class="form-control mr-sm-2" type="text" placeholder="搜文章">
+        <form class="form-inline mobile-hidden" method="get" action="/articles/">
+            <input class="form-control mr-sm-2" type="text" placeholder="搜文章" name="s" id="search" value="{{ search }}">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
         </form>
     </div>

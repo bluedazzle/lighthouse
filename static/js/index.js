@@ -3,10 +3,12 @@
  */
 
 var page = 2;
-var total = 10;
+var total = 1;
+var search = '';
 
 $(function(){
     total = $('#total-page').attr('total');
+    search = $('#search').attr('value');
     $('.article-pagination').remove();
 });
 
@@ -19,9 +21,15 @@ new Scrollload({
             sl.noMoreData();
             return
         }
+        var url = '';
+        if(search){
+            url = '/articles/?page=' + page + '&s=' + search;
+        }else{
+            url = '/articles/?page=' + page;
+        }
         $.ajax({
             type: 'GET',
-            url: '/articles/?page=' + page,
+            url: url,
             success: function(data){
                 var $n = $(data);
                 var items = $n.find("div[class='article-list']").html();

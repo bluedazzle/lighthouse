@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 import six
 
 from django.core.exceptions import ImproperlyConfigured
+from django.core.paginator import Paginator
 from django.db.models import QuerySet
 from django.http import Http404
 from django.shortcuts import get_object_or_404
@@ -32,6 +33,7 @@ class ArticleListView(HostMixin, ListView):
         return obj_list
 
     def get_queryset(self):
+        s = self.request.GET.get('s', None)
         if self.queryset is not None:
             queryset = self.queryset
             if isinstance(queryset, QuerySet):
@@ -49,6 +51,9 @@ class ArticleListView(HostMixin, ListView):
                     'cls': self.__class__.__name__
                 }
             )
+        if s:
+            queryset = queryset.filter(title__icontains=s)
+            self.paginator_class = Paginator
         ordering = self.get_ordering()
         if ordering:
             if isinstance(ordering, six.string_types):
@@ -57,6 +62,9 @@ class ArticleListView(HostMixin, ListView):
         return queryset
 
     def render_to_response(self, context, **response_kwargs):
+        s = self.request.GET.get('s', None)
+        if s:
+            context['search'] = s
         context['zharticle_list'] = self.change_cover_size(context['zharticle_list'])
         page_obj = context['page_obj']
         end = page_obj.number + 5
