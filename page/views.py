@@ -17,6 +17,8 @@ from page.utils import convert_image_size
 
 from core.mixin.seo import HostMixin
 
+from lighthouse.core.paginator import SearchPaginator
+
 
 class ArticleListView(HostMixin, ListView):
     model = ZHArticle
@@ -25,6 +27,7 @@ class ArticleListView(HostMixin, ListView):
     http_method_names = ['get']
     ordering = '-create_time'
     paginator_class = RedisCachePaginator
+    keyword = None
 
     @staticmethod
     def change_cover_size(obj_list):
@@ -33,7 +36,7 @@ class ArticleListView(HostMixin, ListView):
         return obj_list
 
     def get_queryset(self):
-        s = self.request.GET.get('s', None)
+        self.keyword = self.request.GET.get('s', None)
         if self.queryset is not None:
             queryset = self.queryset
             if isinstance(queryset, QuerySet):
@@ -51,9 +54,9 @@ class ArticleListView(HostMixin, ListView):
                     'cls': self.__class__.__name__
                 }
             )
-        if s:
-            queryset = queryset.filter(title__icontains=s)
-            self.paginator_class = Paginator
+        if self.keyword:
+            queryset = queryset.filter(title__icontains=self.keyword)
+            self.paginator_class = SearchPaginator
         ordering = self.get_ordering()
         if ordering:
             if isinstance(ordering, six.string_types):
@@ -61,10 +64,17 @@ class ArticleListView(HostMixin, ListView):
         queryset = queryset.order_by(*ordering)
         return queryset
 
+    def get_paginator(self, queryset, per_page, orphans=0,
+                      allow_empty_first_page=True, **kwargs):
+        if self.keyword:
+            kwargs['keyword'] = self.keyword
+        return self.paginator_class(
+            queryset, per_page, orphans=orphans,
+            allow_empty_first_page=allow_empty_first_page, **kwargs)
+
     def render_to_response(self, context, **response_kwargs):
-        s = self.request.GET.get('s', None)
-        if s:
-            context['search'] = s
+        if self.keyword:
+            context['search'] = self.keyword
         context['zharticle_list'] = self.change_cover_size(context['zharticle_list'])
         page_obj = context['page_obj']
         end = page_obj.number + 5
