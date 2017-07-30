@@ -37,31 +37,20 @@ class ArticleListView(HostMixin, ListView):
 
     def get_queryset(self):
         self.keyword = self.request.GET.get('s', None)
-        if self.queryset is not None:
-            queryset = self.queryset
-            if isinstance(queryset, QuerySet):
-                queryset = queryset.select_related('belong').defer('content', 'summary', 'modify_time', 'link',
-                                                                   'keywords').all()
-        elif self.model is not None:
-            queryset = self.model._default_manager.select_related('belong').defer('content', 'summary', 'modify_time',
-                                                                                  'link',
-                                                                                  'keywords').all()
-        else:
-            raise ImproperlyConfigured(
-                "%(cls)s is missing a QuerySet. Define "
-                "%(cls)s.model, %(cls)s.queryset, or override "
-                "%(cls)s.get_queryset()." % {
-                    'cls': self.__class__.__name__
-                }
-            )
         if self.keyword:
-            queryset = queryset.filter(title__icontains=self.keyword)
+            queryset = ZHArticle.objects.raw('''SELECT title, md5, cover, token, belong_id, core_zhcolumn.id, core_zharticle.create_time, name, hash, slug, avatar
+            FROM core_zharticle
+            LEFT OUTER JOIN core_zhcolumn
+            ON (belong_id = core_zhcolumn.id)
+            WHERE UPPER(title) ~ UPPER('{keyword}')
+            ORDER BY core_zharticle.create_time DESC'''.format(keyword=self.keyword))
             self.paginator_class = SearchPaginator
-        ordering = self.get_ordering()
-        if ordering:
-            if isinstance(ordering, six.string_types):
-                ordering = (ordering,)
-        queryset = queryset.order_by(*ordering)
+        else:
+            queryset = ZHArticle.objects.raw('''SELECT title, md5, cover, token, belong_id, core_zhcolumn.id, core_zharticle.create_time, name, hash, slug, avatar
+            FROM core_zharticle
+            LEFT OUTER JOIN core_zhcolumn
+            ON (belong_id = core_zhcolumn.id)
+            ORDER BY core_zharticle.create_time DESC''')
         return queryset
 
     def get_paginator(self, queryset, per_page, orphans=0,
