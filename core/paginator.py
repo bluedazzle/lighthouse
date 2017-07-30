@@ -45,7 +45,7 @@ class RedisCachePaginator(Paginator):
         return self._get_page(self.object_list, number, self)
 
 
-class SearchPaginator(Paginator):
+class SearchPaginator(RedisCachePaginator):
     def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, *args, **kwargs):
         self.keyword = kwargs.get('keyword', '')
         self.session = DBSession()
