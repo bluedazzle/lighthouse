@@ -42,7 +42,7 @@ class ArticleListView(HostMixin, ListView):
             FROM core_zharticle
             LEFT OUTER JOIN core_zhcolumn
             ON (belong_id = core_zhcolumn.id)
-            WHERE title ~ '{keyword}')
+            WHERE title ~ '{keyword}'
             ORDER BY core_zharticle.create_time DESC'''.format(keyword=self.keyword))
             self.paginator_class = SearchPaginator
         else:
