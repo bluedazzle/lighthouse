@@ -7,7 +7,7 @@ from sqlalchemy import func
 
 from lg_data.db.models import DBSession, ZHArticle
 from lg_data.utils import md5
-from lighthouse.core.models import ZHArticle as DZHArticle
+from core import models
 
 
 class RedisCachePaginator(Paginator):
@@ -40,7 +40,7 @@ class RedisCachePaginator(Paginator):
         top = bottom + self.per_page
         if top + self.orphans >= self.count:
             top = self.count
-        self.object_list = DZHArticle.objects.raw(
+        self.object_list = models.ZHArticle.objects.raw(
             '{0} OFFSET {1} LIMIT {2}'.format(self.object_list.raw_query, bottom, self.per_page))
         return self._get_page(self.object_list, number, self)
 
